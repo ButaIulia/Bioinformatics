@@ -1,0 +1,33 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include <iomanip> 
+using namespace std;
+
+int main() {
+    string sequence;
+    cout << "Enter sequence: ";
+    getline(cin, sequence);
+
+    map<char, int> freq;  
+    int total = 0;         
+
+    // Count occurrences of each character
+    for (char c : sequence) {
+        if (c != ' ' && c != ',') {   
+            freq[c]++;
+            total++;
+        }
+    }
+
+    cout << "Symbol | Count | Relative Frequency\n";
+    cout << "----------------------------------\n";
+    for (auto &p : freq) {
+        double relative = (double)p.second / total;
+        cout << "   " << p.first << "    | "
+             << p.second << "     | "
+             << fixed << setprecision(3) << relative << "\n";
+    }
+
+    return 0;
+}
